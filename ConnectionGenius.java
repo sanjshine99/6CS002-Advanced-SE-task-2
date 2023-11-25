@@ -9,16 +9,16 @@ package base;
 import java.net.InetAddress;
 
 public class ConnectionGenius {
-    InetAddress ipa;
+    InetAddress gameServerIPAddress; // rename ipa to gameServerIPAddress
 
-    public ConnectionGenius(InetAddress ipa) {
-        this.ipa = ipa;
+    public ConnectionGenius(InetAddress gameServerIPAddress) {
+        this.gameServerIPAddress = gameServerIPAddress;
     }
 
-    public void fireUpGame() {
-        downloadWebVersion();
-        connectToWebService();
-        awayWeGo();
+    public void startGame() { // rename fireUpGame() to startGame()
+        downloadWebVersion(); // rename downloadWebVersion() to fetchSpecializedWebVersion()
+        connectToWebService(); // rename connectToWebService() to establishWebServiceConnection()
+        launchGame(); // rename awayWeGo() to launchGame()
     }
 
     public void downloadWebVersion() {
@@ -30,7 +30,7 @@ public class ConnectionGenius {
         System.out.println("Connecting");
     }
 
-    public void awayWeGo() {
+    public void launchGame() { // rename awayWeGo() to launchGame()
         System.out.println("Ready to play");
     }
 }

@@ -846,8 +846,8 @@ public class Main {
                 case 4:
                     System.out
                             .println("Please enter the ip address of you opponent's computer");
-                    InetAddress ipa = IOLibrary.getIPAddress();
-                    new ConnectionGenius(ipa).fireUpGame();
+                    InetAddress gameServerIPAddress = IOLibrary.getIPAddress();
+                    new ConnectionGenius(gameServerIPAddress).startGame();
             }
 
         }
