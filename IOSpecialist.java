@@ -1,14 +1,15 @@
-     	package base;
+/**
+ * The IOSpecialist class acts as a specialized interface for input/output operations,
+ * providing a simplified method for obtaining strings using the IOLibrary.
+ */
 
-     	/**
-     	 * @author Kevan Buckley, maintained by __student
-     	 * @version 2.0, 2014
-     	 */
+package base;
 
-     	public class IOSpecialist {
-     	  public IOSpecialist() {
-    	  }
-    	  public String getString(){
-    	    return IOLibrary.getString();
-    	  }
-    	}
+public class IOSpecialist {
+    public IOSpecialist() {
+    }
+
+    public String getString() {
+        return IOLibrary.getString();
+    }
+}

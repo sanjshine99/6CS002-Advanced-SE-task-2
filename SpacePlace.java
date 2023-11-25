@@ -1,56 +1,56 @@
-     	package base;
-     	/**
-     	 * @author Kevan Buckley, maintained by __student
-     	 * @version 2.0, 2014
-     	 */
+/**
+ * Represents a point in space with coordinates and orientation angles.
+ * This class provides a simple abstraction for spatial coordinates in a 3D space.
+ */
+package base;
 
-     	public class SpacePlace {
-     	  private int xOrg;
-     	  private int yOrg;
-    	  private double theta;
-    	  private double phi;
+public class SpacePlace {
+    private int xOrg;
+    private int yOrg;
+    private double theta;
+    private double phi;
 
-    	  public SpacePlace() {
-    	    xOrg = 0;
-    	    yOrg = 0;
-    	  }
+    public SpacePlace() {
+        xOrg = 0;
+        yOrg = 0;
+    }
 
-    	  public SpacePlace(double theta, double phi) {
-    	    super();
-    	    this.theta = theta;
-    	    this.phi = phi;
-    	  }
+    public SpacePlace(double theta, double phi) {
+        super();
+        this.theta = theta;
+        this.phi = phi;
+    }
 
-    	  public int getxOrg() {
-    	    return xOrg;
-    	  }
+    public int getxOrg() {
+        return xOrg;
+    }
 
-    	  public void setxOrg(int xOrg) {
-    	    this.xOrg = xOrg;
-    	  }
+    public void setxOrg(int xOrg) {
+        this.xOrg = xOrg;
+    }
 
-    	  public int getyOrg() {
-    	    return yOrg;
-    	  }
+    public int getyOrg() {
+        return yOrg;
+    }
 
-    	  public void setyOrg(int yOrg) {
-    	    this.yOrg = yOrg;
-    	  }
+    public void setyOrg(int yOrg) {
+        this.yOrg = yOrg;
+    }
 
-    	  public double getTheta() {
-    	    return theta;
-    	  }
+    public double getTheta() {
+        return theta;
+    }
 
-    	  public void setTheta(double theta) {
-    	    this.theta = theta;
-    	  }
+    public void setTheta(double theta) {
+        this.theta = theta;
+    }
 
-    	  public double getPhi() {
-    	    return phi;
-    	  }
+    public double getPhi() {
+        return phi;
+    }
 
-    	  public void setPhi(double phi) {
-    	    this.phi = phi;
-    	  }
+    public void setPhi(double phi) {
+        this.phi = phi;
+    }
 
-    	}
+}

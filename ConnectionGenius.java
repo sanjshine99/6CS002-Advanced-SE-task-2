@@ -1,35 +1,36 @@
-     	package base;
-     	import java.net.InetAddress;
-     	/**
-     	 * @author Kevan Buckley, maintained by __student
-     	 * @version 2.0, 2014
-     	 */
+/**
+ * ConnectionGenius class represents a utility for setting up a game connection.
+ * It includes methods for downloading a specialized web version,
+ * connecting to a web service, and initiating the game.
+ */
 
-     	public class ConnectionGenius {
+package base;
 
-    	  InetAddress ipa;
+import java.net.InetAddress;
 
-    	  public ConnectionGenius(InetAddress ipa) {
-    	    this.ipa = ipa;
-    	  }
+public class ConnectionGenius {
+    InetAddress ipa;
 
-    	  public void fireUpGame() {
-    	    downloadWebVersion();
-    	    connectToWebService();
-    	    awayWeGo();
-    	  }
+    public ConnectionGenius(InetAddress ipa) {
+        this.ipa = ipa;
+    }
 
-    	  public void downloadWebVersion(){
-    	    System.out.println("Getting specialised web version.");
-    	    System.out.println("Wait a couple of moments");
-    	  }
+    public void fireUpGame() {
+        downloadWebVersion();
+        connectToWebService();
+        awayWeGo();
+    }
 
-    	  public void connectToWebService() {
-    	    System.out.println("Connecting");
-    	  }
+    public void downloadWebVersion() {
+        System.out.println("Getting specialised web version.");
+        System.out.println("Wait a couple of moments");
+    }
 
-    	  public void awayWeGo(){
-    	    System.out.println("Ready to play");
-    	  }
+    public void connectToWebService() {
+        System.out.println("Connecting");
+    }
 
-    	}
+    public void awayWeGo() {
+        System.out.println("Ready to play");
+    }
+}
