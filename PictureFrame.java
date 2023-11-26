@@ -15,17 +15,17 @@ import javax.swing.*;
 public class PictureFrame {
     public int[] reroll = null;
     public Main master = null;
-    public DominoPanel dp;
+    public DominoPanel dominoPanel;
 
-    public PictureFrame(Main sf) {
-        master = sf;
-        if (dp == null) {
-            JFrame f = new JFrame("Abominodo");
-            dp = new DominoPanel();
-            f.setContentPane(dp);
-            f.pack();
-            f.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-            f.setVisible(true);
+    public PictureFrame(Main sourceFrame) {
+        master = sourceFrame;
+        if (dominoPanel == null) {
+            JFrame frame = new JFrame("Abominodo");
+            dominoPanel = new DominoPanel();
+            frame.setContentPane(dominoPanel);
+            frame.pack();
+            frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+            frame.setVisible(true);
         }
     }
 
@@ -74,24 +74,28 @@ public class PictureFrame {
             }
         }
 
-        void drawDigitGivenCentre(Graphics g, int x, int y, int diameter, int number) {
+        private void drawCenteredDigit(Graphics g, int x, int y, int diameter, int number, Color fillColor) {
             int radius = diameter / 2;
+
+            g.setColor(fillColor);
+            g.fillOval(x - radius, y - radius, diameter, diameter);
+
             g.setColor(Color.BLACK);
+            g.drawOval(x - radius, y - radius, diameter, diameter);
+
             FontMetrics fm = g.getFontMetrics();
-            String txt = Integer.toString(n);
+            String txt = Integer.toString(number);
             g.drawString(txt, x - fm.stringWidth(txt) / 2, y + fm.getMaxAscent() / 2);
         }
 
-        void fillDigitGivenCentre(Graphics g, int x, int y, int diameter, int number) {
-            int radius = diameter / 2;
-            g.setColor(Color.GREEN);
-            g.fillOval(x - radius, y - radius, diameter, diameter);
-            g.setColor(Color.BLACK);
-            g.drawOval(x - radius, y - radius, diameter, diameter);
-            FontMetrics fm = g.getFontMetrics();
-            String txt = Integer.toString(n);
-            g.drawString(txt, x - fm.stringWidth(txt) / 2, y + fm.getMaxAscent() / 2);
+        void drawDigitGivenCentre(Graphics g, int x, int y, int diameter, int number) {
+            drawCenteredDigit(g, x, y, diameter, number, Color.BLACK);
         }
+
+        void fillDigitGivenCentre(Graphics g, int x, int y, int diameter, int number) {
+            drawCenteredDigit(g, x, y, diameter, number, Color.GREEN);
+        }
+
 
         @Override
         protected void paintComponent(Graphics g) {
