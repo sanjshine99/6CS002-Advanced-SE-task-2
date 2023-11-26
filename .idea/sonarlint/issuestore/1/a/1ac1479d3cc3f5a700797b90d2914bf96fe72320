@@ -1,0 +1,20 @@
+
+w
+java:S1104
+"UMake highValue a static final constant or non-public and provide accessors if needed.(şÕˆ¹ÿÿÿÿÿ8‘¼ÒÍÀ1
+q
+java:S1104"TMake lowValue a static final constant or non-public and provide accessors if needed.(Õ‡¼Û8•¼ÒÍÀ1
+|
+java:S1104"_Make horizontalPositionX a static final constant or non-public and provide accessors if needed.(ª—Á 8•¼ÒÍÀ1
+|
+java:S1104"_Make horizontalPositionY a static final constant or non-public and provide accessors if needed.(è´´²8•¼ÒÍÀ1
+
+java:S1104"]Make verticalPositionX a static final constant or non-public and provide accessors if needed.(óƒûşÿÿÿÿ8•¼ÒÍÀ1
+y
+java:S1104"]Make verticalPositionY a static final constant or non-public and provide accessors if needed.(Ì”ÿL8•¼ÒÍÀ1
+v
+java:S1104"TMake isPlaced a static final constant or non-public and provide accessors if needed.(ŞĞÛÏûÿÿÿÿ8•¼ÒÍÀ1
+À
+java:S1598"©This file "Domino.java" should be located in "base" directory, not in "C:\Users\SamanB\Desktop\Cinec\Assesments\Advanced SE Topics\Advanced SE Topics - Task 02\Answers".(›‰±ä
+{
+java:S1210C"YOverride "equals(Object obj)" to comply with the contract of the "compareTo(T o)" method.(Â—Èöüÿÿÿÿ8ı”ûÇÀ1

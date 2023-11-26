@@ -38,18 +38,18 @@ public class PictureFrame {
         private static final long serialVersionUID = 4190229282411119364L;
 
         public void drawGrid(Graphics g) {
-            for (int are = 0; are < 7; are++) {
+            for (int area = 0; area < 7; area++) {
                 for (int see = 0; see < 8; see++) {
-                    drawDigitGivenCentre(g, 30 + see * 20, 30 + are * 20, 20,
-                            master.grid[are][see]);
+                    drawDigitGivenCentre(g, 30 + see * 20, 30 + area * 20, 20,
+                            master.grid[area][see]);
                 }
             }
         }
 
 
         public void drawHeadings(Graphics g) {
-            for (int are = 0; are < 7; are++) {
-                fillDigitGivenCentre(g, 10, 30 + are * 20, 20, are + 1);
+            for (int area = 0; area < 7; area++) {
+                fillDigitGivenCentre(g, 10, 30 + area * 20, 20, area + 1);
             }
 
             for (int see = 0; see < 8; see++) {
@@ -57,24 +57,24 @@ public class PictureFrame {
             }
         }
 
-        public void drawDomino(Graphics g, Domino d) {
-            if (d.isPlaced) {
-                int y = Math.min(d.verticalPositionY, d.horizontalPositionY);
-                int x = Math.min(d.verticalPositionX, d.horizontalPositionX);
-                int w = Math.abs(d.verticalPositionX - d.horizontalPositionX) + 1;
-                int h = Math.abs(d.verticalPositionY - d.horizontalPositionY) + 1;
+        public void drawDomino(Graphics g, Domino domino) {
+            if (domino.isPlaced) {
+                int y = Math.min(domino.verticalPositionY, domino.horizontalPositionY);
+                int x = Math.min(domino.verticalPositionX, domino.horizontalPositionX);
+                int w = Math.abs(domino.verticalPositionX - domino.horizontalPositionX) + 1;
+                int h = Math.abs(domino.verticalPositionY - domino.horizontalPositionY) + 1;
                 g.setColor(Color.WHITE);
                 g.fillRect(20 + x * 20, 20 + y * 20, w * 20, h * 20);
                 g.setColor(Color.RED);
                 g.drawRect(20 + x * 20, 20 + y * 20, w * 20, h * 20);
-                drawDigitGivenCentre(g, 30 + d.horizontalPositionX * 20, 30 + d.horizontalPositionY * 20, 20, d.highValue,
+                drawDigitGivenCentre(g, 30 + domino.horizontalPositionX * 20, 30 + domino.horizontalPositionY * 20, 20, domino.highValue,
                         Color.BLUE);
-                drawDigitGivenCentre(g, 30 + d.verticalPositionX * 20, 30 + d.verticalPositionY * 20, 20, d.lowValue,
+                drawDigitGivenCentre(g, 30 + domino.verticalPositionX * 20, 30 + domino.verticalPositionY * 20, 20, domino.lowValue,
                         Color.BLUE);
             }
         }
 
-        void drawDigitGivenCentre(Graphics g, int x, int y, int diameter, int n) {
+        void drawDigitGivenCentre(Graphics g, int x, int y, int diameter, int number) {
             int radius = diameter / 2;
             g.setColor(Color.BLACK);
 
@@ -84,7 +84,7 @@ public class PictureFrame {
             g.drawString(txt, x - fm.stringWidth(txt) / 2, y + fm.getMaxAscent() / 2);
         }
 
-        void drawDigitGivenCentre(Graphics g, int x, int y, int diameter, int n,
+        void drawDigitGivenCentre(Graphics g, int x, int y, int diameter, int number,
                                   Color c) {
             int radius = diameter / 2;
             g.setColor(c);
@@ -94,7 +94,7 @@ public class PictureFrame {
             g.drawString(txt, x - fm.stringWidth(txt) / 2, y + fm.getMaxAscent() / 2);
         }
 
-        void fillDigitGivenCentre(Graphics g, int x, int y, int diameter, int n) {
+        void fillDigitGivenCentre(Graphics g, int x, int y, int diameter, int number) {
             int radius = diameter / 2;
             g.setColor(Color.GREEN);
             g.fillOval(x - radius, y - radius, diameter, diameter);
