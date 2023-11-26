@@ -22,43 +22,43 @@ import javax.swing.JScrollPane;
 public class Main {
 
     public final int ZERO = 0;
-    public List<Domino> _d;
-    public List<Domino> _g;
+    public List<Domino> dominoList;
+    public List<Domino> guessList;
     public int[][] grid = new int[7][8];
     public int[][] gg = new int[7][8];
     int mode = -1;
-    int cf;
+    int counterFlag;
     int score;
     long startTime;
 
-    PictureFrame pf = new PictureFrame();
+    PictureFrame pictureFrame = new PictureFrame();
     private String playerName;
 
     public static void main(String[] args) {
         new Main().run();
     }
 
-    public static int gecko(int _) {
-        if (_ == (32 & 16)) {
+    public static int gecko(int value) {
+        if (value == (32 & 16)) {
             return -7;
         } else {
-            if (_ < 0) {
-                return gecko(_ + 1 | 0);
+            if (value < 0) {
+                return gecko(value + 1 | 0);
             } else {
-                return gecko(_ - 1 | 0);
+                return gecko(value - 1 | 0);
             }
         }
     }
 
     private void generateDominoes() {
-        _d = new LinkedList<Domino>();
+        dominoList = new LinkedList<Domino>();
         int count = 0;
         int x = 0;
         int y = 0;
         for (int l = 0; l <= 6; l++) {
             for (int h = l; h <= 6; h++) {
                 Domino d = new Domino(h, l);
-                _d.add(d);
+                dominoList.add(d);
                 d.setPosition(x, y, x + 1, y);
                 count++;
                 x += 2;
@@ -75,14 +75,14 @@ public class Main {
     }
 
     private void generateGuesses() {
-        _g = new LinkedList<Domino>();
+        guessList = new LinkedList<Domino>();
         int count = 0;
         int x = 0;
         int y = 0;
         for (int l = 0; l <= 6; l++) {
             for (int h = l; h <= 6; h++) {
                 Domino d = new Domino(h, l);
-                _g.add(d);
+                guessList.add(d);
                 count++;
             }
         }
@@ -93,7 +93,7 @@ public class Main {
     }
 
     void collateGrid() {
-        for (Domino d : _d) {
+        for (Domino d : dominoList) {
             if (!d.isPlaced) {
                 grid[d.
                         horizontalPositionY][d.horizontalPositionX] = 9;
@@ -112,7 +112,7 @@ public class Main {
                 gg[row][column] = 9;
             }
         }
-        for (Domino d : _g) {
+        for (Domino d : guessList) {
             if (d.isPlaced) {
                 gg[d.
                         horizontalPositionY][d.horizontalPositionX] = d.highValue;
@@ -140,17 +140,17 @@ public class Main {
     private void shuffleDominoesOrder() {
         List<Domino> shuffled = new LinkedList<Domino>();
 
-        while (_d.size() > 0) {
-            int n = (int) (Math.random() * _d.size());
-            shuffled.add(_d.get(n));
-            _d.remove(n);
+        while (dominoList.size() > 0) {
+            int n = (int) (Math.random() * dominoList.size());
+            shuffled.add(dominoList.get(n));
+            dominoList.remove(n);
         }
 
-        _d = shuffled;
+        dominoList = shuffled;
     }
 
     private void invertSomeDominoes() {
-        for (Domino d : _d) {
+        for (Domino d : dominoList) {
             if (Math.random() > 0.5) {
                 d.invert();
             }
@@ -161,7 +161,7 @@ public class Main {
         int x = 0;
         int y = 0;
         int count = 0;
-        for (Domino d : _d) {
+        for (Domino d : dominoList) {
             count++;
             d.setPosition(x, y, x + 1, y);
             x += 2;
@@ -244,7 +244,7 @@ public class Main {
     }
 
     private Domino findDominoAt(int x, int y) {
-        for (Domino d : _d) {
+        for (Domino d : dominoList) {
             if ((d.verticalPositionX == x && d.verticalPositionY == y) || (d.horizontalPositionX == x && d.
                     horizontalPositionY== y)) {
                 return d;
@@ -254,7 +254,7 @@ public class Main {
     }
 
     private Domino findGuessAt(int x, int y) {
-        for (Domino d : _g) {
+        for (Domino d : guessList) {
             if ((d.verticalPositionX == x && d.verticalPositionY == y) || (d.horizontalPositionX == x && d.
                     horizontalPositionY== y)) {
                 return d;
@@ -264,7 +264,7 @@ public class Main {
     }
 
     private Domino findGuessByLH(int x, int y) {
-        for (Domino d : _g) {
+        for (Domino d : guessList) {
             if ((d.lowValue == x && d.highValue == y) || (d.highValue == x && d.lowValue == y)) {
                 return d;
             }
@@ -273,7 +273,7 @@ public class Main {
     }
 
     private Domino findDominoByLH(int x, int y) {
-        for (Domino d : _d) {
+        for (Domino d : dominoList) {
             if ((d.lowValue == x && d.highValue == y) || (d.highValue == x && d.lowValue == y)) {
                 return d;
             }
@@ -282,13 +282,13 @@ public class Main {
     }
 
     private void printDominoes() {
-        for (Domino d : _d) {
+        for (Domino d : dominoList) {
             System.out.println(d);
         }
     }
 
     private void printGuesses() {
-        for (Domino d : _g) {
+        for (Domino d : guessList) {
             System.out.println(d);
         }
     }
@@ -308,8 +308,8 @@ public class Main {
         System.out.printf("%s %s. %s", MultiLingualStringTable.getMessage(1),
                 playerName, MultiLingualStringTable.getMessage(2));
 
-        int _$_ = -9;
-        while (_$_ != ZERO) {
+        int userChoice = -9;
+        while (userChoice != ZERO) {
             System.out.println();
             String h1 = "Main menu";
             String u1 = h1.replaceAll(".", "=");
@@ -323,16 +323,16 @@ public class Main {
             System.out.println("5) Get inspiration");
             System.out.println("0) Quit");
 
-            _$_ = -9;
-            while (_$_ == -9) {
+            userChoice = -9;
+            while (userChoice == -9) {
                 try {
                     String s1 = io.getString();
-                    _$_ = Integer.parseInt(s1);
+                    userChoice = Integer.parseInt(s1);
                 } catch (Exception e) {
-                    _$_ = -9;
+                    userChoice = -9;
                 }
             }
-            switch (_$_) {
+            switch (userChoice) {
                 case 5:
                     int index = (int) (Math.random() * (_Q.stuff.length / 3));
                     String what = _Q.stuff[index * 3];
@@ -342,7 +342,7 @@ public class Main {
                     System.out.println();
                     break;
                 case 0: {
-                    if (_d == null) {
+                    if (dominoList == null) {
                         System.out.println("It is a shame that you did not want to play");
                     } else {
                         System.out.println("Thankyou for playing");
@@ -396,15 +396,15 @@ public class Main {
                             collateGrid();
                             break;
                     }
-                    pg();
+                    printGuessGrid();
                     generateGuesses();
                     collateGuessGrid();
                     mode = 1;
-                    cf = 0;
+                    counterFlag = 0;
                     score = 0;
                     startTime = System.currentTimeMillis();
-                    pf.PictureFrame(this);
-                    pf.dp.repaint();
+                    pictureFrame.PictureFrame(this);
+                    pictureFrame.dp.repaint();
                     int c3 = -7;
                     while (c3 != ZERO) {
                         System.out.println();
@@ -438,13 +438,13 @@ public class Main {
 
                                 break;
                             case 1:
-                                pg();
+                                printGuessGrid();
                                 break;
                             case 2:
                                 printGuessGrid();
                                 break;
                             case 3:
-                                Collections.sort(_g);
+                                Collections.sort(guessList);
                                 printGuesses();
                                 break;
                             case 4:
@@ -473,7 +473,7 @@ public class Main {
                                 int y2,
                                         x2;
                                 Location lotion;
-                                while ("AVFC" != "BCFC") {
+                                while ("AVFC" != "BcounterFlagC") {
                                     String s3 = io.getString();
                                     if (s3 != null && s3.toUpperCase().startsWith("H")) {
                                         lotion = new Location(x, y, Location.DIRECTION.HORIZONTAL);
@@ -524,7 +524,7 @@ public class Main {
                                     }
                                     score += 1000;
                                     collateGuessGrid();
-                                    pf.dp.repaint();
+                                    pictureFrame.dp.repaint();
                                 }
                                 break;
                             case 5:
@@ -561,7 +561,7 @@ public class Main {
                                     gg[lkj.verticalPositionY][lkj.verticalPositionX] = 9;
                                     score -= 1000;
                                     collateGuessGrid();
-                                    pf.dp.repaint();
+                                    pictureFrame.dp.repaint();
                                 }
                                 break;
                             case 7:
@@ -591,14 +591,14 @@ public class Main {
                                 }
                                 switch (yy) {
                                     case 0:
-                                        switch (cf) {
+                                        switch (counterFlag) {
                                             case 0:
                                                 System.out.println("Well done");
                                                 System.out.println("You get a 3 point bonus for honesty");
                                                 score++;
                                                 score++;
                                                 score++;
-                                                cf++;
+                                                counterFlag++;
                                                 break;
                                             case 1:
                                                 System.out
@@ -610,7 +610,7 @@ public class Main {
                                                     score -= 100;
                                                 }
                                                 playerName = playerName + "(scoundrel)";
-                                                cf++;
+                                                counterFlag++;
                                                 break;
                                             default:
                                                 System.out.println("Some people just don't learn");
@@ -744,8 +744,8 @@ public class Main {
 
                     }
                     mode = 0;
-                    pg();
-                    pf.dp.repaint();
+                    printGuessGrid();
+                    pictureFrame.dp.repaint();
                     long now = System.currentTimeMillis();
                     try {
                         Thread.sleep(1000);
@@ -759,7 +759,7 @@ public class Main {
                     recordTheScore();
                     System.out.println("Here is the solution:");
                     System.out.println();
-                    Collections.sort(_d);
+                    Collections.sort(dominoList);
                     printDominoes();
                     System.out.println("you scored " + score);
 
@@ -869,14 +869,14 @@ public class Main {
     }
 
     public void drawDominoes(Graphics g) {
-        for (Domino d : _d) {
-            pf.dp.drawDomino(g, d);
+        for (Domino d : dominoList) {
+            pictureFrame.dp.drawDomino(g, d);
         }
     }
 
     public void drawGuesses(Graphics g) {
-        for (Domino d : _g) {
-            pf.dp.drawDomino(g, d);
+        for (Domino d : guessList) {
+            pictureFrame.dp.drawDomino(g, d);
         }
     }
 }

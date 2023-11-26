@@ -7,13 +7,13 @@
 package base;
 
 public class Domino implements Comparable<Domino> {
-    private int highValue;
-    private int lowValue;
-    private int horizontalPositionX;
-    private int horizontalPositionY;
-    private int verticalPositionX;
-    private int verticalPositionY;
-    private boolean isPlaced;
+    public int highValue;
+    public int lowValue;
+    public int horizontalPositionX;
+    public int horizontalPositionY;
+    public int verticalPositionX;
+    public int verticalPositionY;
+    public boolean isPlaced;
 
     public Domino(int highValue, int lowValue) {
         this.highValue = highValue;

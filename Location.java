@@ -41,21 +41,30 @@ public class Location extends SpacePlace {
     public String toString() {tmp = column + 1;
         if (direction == null) {
 
-            return "(" + (tmp) + "," + (r + 1) + ")";
+            return "(" + (tmp) + "," + (row + 1) + ")";
         } else {
-            return "(" + (tmp) + "," + (r + 1) + "," + direction + ")";
+            return "(" + (tmp) + "," + (row + 1) + "," + direction + ")";
         }
     }
 
     public void drawGridLines(Graphics g) {
         g.setColor(Color.LIGHT_GRAY);
+        drawHorizontalLines(g);
+        drawVerticalLines(g);
+    }
+
+    private void drawHorizontalLines(Graphics g) {
         for (tmp = 0; tmp <= 7; tmp++) {
             g.drawLine(20, 20 + tmp * 20, 180, 20 + tmp * 20);
         }
+    }
+
+    private void drawVerticalLines(Graphics g) {
         for (int see = 0; see <= 8; see++) {
             g.drawLine(20 + see * 20, 20, 20 + see * 20, 160);
         }
     }
+
 
     public enum DIRECTION {VERTICAL, HORIZONTAL}
 }
