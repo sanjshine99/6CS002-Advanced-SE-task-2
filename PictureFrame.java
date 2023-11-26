@@ -37,85 +37,100 @@ public class PictureFrame {
     class DominoPanel extends JPanel {
         private static final long serialVersionUID = 4190229282411119364L;
 
-        public void drawGrid(Graphics g) {
+        public void drawGrid(Graphics graphics) {
             for (int area = 0; area < 7; area++) {
                 for (int see = 0; see < 8; see++) {
-                    drawDigitGivenCentre(g, 30 + see * 20, 30 + area * 20, 20,
+                    drawDigitGivenCentre(graphics, 30 + see * 20, 30 + area * 20, 20,
                             master.grid[area][see]);
                 }
             }
         }
 
 
-        public void drawHeadings(Graphics g) {
+        public void drawHeadings(Graphics graphics) {
             for (int area = 0; area < 7; area++) {
-                fillDigitGivenCentre(g, 10, 30 + area * 20, 20, area + 1);
+                fillDigitGivenCentre(graphics, 10, 30 + area * 20, 20, area + 1);
             }
 
             for (int see = 0; see < 8; see++) {
-                fillDigitGivenCentre(g, 30 + see * 20, 10, 20, see + 1);
+                fillDigitGivenCentre(graphics, 30 + see * 20, 10, 20, see + 1);
             }
         }
 
-        public void drawDomino(Graphics g, Domino domino) {
+        public void drawDomino(Graphics graphics, Domino domino) {
             if (domino.isPlaced) {
-                int y = Math.min(domino.verticalPositionY, domino.horizontalPositionY);
-                int x = Math.min(domino.verticalPositionX, domino.horizontalPositionX);
-                int w = Math.abs(domino.verticalPositionX - domino.horizontalPositionX) + 1;
-                int h = Math.abs(domino.verticalPositionY - domino.horizontalPositionY) + 1;
-                g.setColor(Color.WHITE);
-                g.fillRect(20 + x * 20, 20 + y * 20, w * 20, h * 20);
-                g.setColor(Color.RED);
-                g.drawRect(20 + x * 20, 20 + y * 20, w * 20, h * 20);
-                drawDigitGivenCentre(g, 30 + domino.horizontalPositionX * 20, 30 + domino.horizontalPositionY * 20, 20, domino.highValue,
-                        Color.BLUE);
-                drawDigitGivenCentre(g, 30 + domino.verticalPositionX * 20, 30 + domino.verticalPositionY * 20, 20, domino.lowValue,
-                        Color.BLUE);
+                final int CELL_WIDTH = 20;
+                final int CELL_HEIGHT = 20;
+                final int DIGIT_OFFSET = 10;
+
+                int topY = Math.min(domino.verticalPositionY, domino.horizontalPositionY);
+                int topX = Math.min(domino.verticalPositionX, domino.horizontalPositionX);
+                int width = Math.abs(domino.verticalPositionX - domino.horizontalPositionX) + 1;
+                int height = Math.abs(domino.verticalPositionY - domino.horizontalPositionY) + 1;
+
+                graphics.setColor(Color.WHITE);
+                graphics.fillRect(topX * CELL_WIDTH, topY * CELL_HEIGHT, width * CELL_WIDTH, height * CELL_HEIGHT);
+        graphics.setColor(Color.RED);
+        graphics.drawRect(topX * CELL_WIDTH, topY * CELL_HEIGHT, width * CELL_WIDTH, height * CELL_HEIGHT);
+
+                 drawDigitGivenCentre(graphics,
+                topX * CELL_WIDTH + DIGIT_OFFSET,
+                topY * CELL_HEIGHT + DIGIT_OFFSET,
+                CELL_WIDTH,
+                domino.highValue,
+                Color.BLUE);
+
+               drawDigitGivenCentre(graphics,
+                (topX + width) * CELL_WIDTH - DIGIT_OFFSET,
+                (topY + height) * CELL_HEIGHT - DIGIT_OFFSET,
+                CELL_WIDTH,
+                domino.lowValue,
+                Color.BLUE);
             }
         }
 
-        private void drawCenteredDigit(Graphics g, int x, int y, int diameter, int number, Color fillColor) {
+        private void drawCenteredDigit(Graphics graphics, int x, int y, int diameter, int number, Color fillColor) {
             int radius = diameter / 2;
 
-            g.setColor(fillColor);
-            g.fillOval(x - radius, y - radius, diameter, diameter);
+            graphics.setColor(fillColor);
+            graphics.fillOval(x - radius, y - radius, diameter, diameter);
 
-            g.setColor(Color.BLACK);
-            g.drawOval(x - radius, y - radius, diameter, diameter);
+            graphics.setColor(Color.BLACK);
+            graphics.drawOval(x - radius, y - radius, diameter, diameter);
 
-            FontMetrics fm = g.getFontMetrics();
+            FontMetrics fm = graphics.getFontMetrics();
             String txt = Integer.toString(number);
-            g.drawString(txt, x - fm.stringWidth(txt) / 2, y + fm.getMaxAscent() / 2);
+            graphics.drawString(txt, x - fm.stringWidth(txt) / 2, y + fm.getMaxAscent() / 2);
         }
 
-        void drawDigitGivenCentre(Graphics g, int x, int y, int diameter, int number) {
-            drawCenteredDigit(g, x, y, diameter, number, Color.BLACK);
+        void drawDigitGivenCentre(Graphics graphics, int x, int y, int diameter, int number) {
+            drawCenteredDigit(graphics, x, y, diameter, number, Color.BLACK);
         }
 
-        void fillDigitGivenCentre(Graphics g, int x, int y, int diameter, int number) {
-            drawCenteredDigit(g, x, y, diameter, number, Color.GREEN);
+        void fillDigitGivenCentre(Graphics graphics, int x, int y, int diameter, int number) {
+            drawCenteredDigit(graphics, x, y, diameter, number, Color.GREEN);
         }
 
 
         @Override
-        protected void paintComponent(Graphics g) {
-            g.setColor(Color.YELLOW);
-            g.fillRect(0, 0, getWidth(), getHeight());
+        protected void paintComponent(Graphics graphics) {
+            graphics.setColor(Color.YELLOW);
+            graphics.fillRect(0, 0, getWidth(), getHeight());
 
 
-            Location l = new Location(1, 2);
+            Location location = new Location(1, 2);
 
             if (master.mode == 1) {
-                l.drawGridLines(g);
-                drawHeadings(g);
-                drawGrid(g);
-                master.drawGuesses(g);
+                location.drawGridLines(graphics);
+                drawHeadings(graphics);
+                drawGrid(graphics);
+                master.drawGuesses(graphics);
             }
             if (master.mode == 0) {
-                l.drawGridLines(g);
-                drawHeadings(g);
-                drawGrid(g);
-                master.drawDominoes(g);
+                location.drawGridLines(graphics);
+                drawHeadings(graphics);
+                drawGrid(graphics);
+                master.drawDominoes(graphics);
             }
         }
 
