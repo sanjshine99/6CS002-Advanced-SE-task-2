@@ -1,0 +1,15 @@
+
+o
+java:S1104	"RMake column a static final constant or non-public and provide accessors if needed.(‰¹´8©ÂİÕÀ1
+l
+java:S1104
+"OMake row a static final constant or non-public and provide accessors if needed.(²¤÷”8¬ÂİÕÀ1
+r
+java:S1104"UMake direction a static final constant or non-public and provide accessors if needed.(À‘¿µ8¬ÂİÕÀ1
+q
+java:S1104"OMake tmp a static final constant or non-public and provide accessors if needed.(Ÿ™ãúÿÿÿÿ8¶ö½×À1
+E	java:S108")Either remove or fill this block of code.(”ı¾8ÃÃİÕÀ1
+Y
+java:S1117#"7Rename "tmp" which hides the field declared at line 12.(¯“«Ÿùÿÿÿÿ8÷½×À1
+T
+java:S11172"7Rename "tmp" which hides the field declared at line 12.(Ÿœîˆ8’÷½×À1

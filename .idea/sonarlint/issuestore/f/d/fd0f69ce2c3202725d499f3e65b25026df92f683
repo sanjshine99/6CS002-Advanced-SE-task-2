@@ -1,0 +1,20 @@
+
+p
+java:S1104
+"UMake highValue a static final constant or non-public and provide accessors if needed.(şÕˆ¹ÿÿÿÿÿ
+j
+java:S1104"TMake lowValue a static final constant or non-public and provide accessors if needed.(Õ‡¼Û
+u
+java:S1104"_Make horizontalPositionX a static final constant or non-public and provide accessors if needed.(ª—Á 
+u
+java:S1104"_Make horizontalPositionY a static final constant or non-public and provide accessors if needed.(è´´²
+x
+java:S1104"]Make verticalPositionX a static final constant or non-public and provide accessors if needed.(óƒûşÿÿÿÿ
+r
+java:S1104"]Make verticalPositionY a static final constant or non-public and provide accessors if needed.(Ì”ÿL
+o
+java:S1104"TMake isPlaced a static final constant or non-public and provide accessors if needed.(ŞĞÛÏûÿÿÿÿ
+£
+java:S1186H"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(…’»›úÿÿÿÿ8ÅÈÓİÀ1
+{
+java:S1210A"YOverride "equals(Object obj)" to comply with the contract of the "compareTo(T o)" method.(Â—Èöüÿÿÿÿ8ÕÈÓİÀ1

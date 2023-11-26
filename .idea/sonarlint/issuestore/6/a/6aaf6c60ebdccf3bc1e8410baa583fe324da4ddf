@@ -1,0 +1,7 @@
+
+P
+java:S1118":Add a private constructor to hide the implicit public one.(Î‰Ê¨
+>	java:S108")Either remove or fill this block of code.(”ı¾
+W
+java:S3252 "AUse static access with "java.net.InetAddress" for "getByAddress".(÷Â•Î
+>	java:S108!")Either remove or fill this block of code.(”ı¾
