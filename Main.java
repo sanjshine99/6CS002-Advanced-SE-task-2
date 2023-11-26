@@ -121,19 +121,7 @@ public class Main {
         }
     }
 
-    int pg() {
-        for (int are = 0; are < 7; are++) {
-            for (int see = 0; see < 8; see++) {
-                if (grid[are][see] != 9) {
-                    System.out.printf("%d", grid[are][see]);
-                } else {
-                    System.out.print(".");
-                }
-            }
-            System.out.println();
-        }
-        return 11;
-    }
+
 
     int printGuessGrid() {
         for (int are = 0; are < 7; are++) {
