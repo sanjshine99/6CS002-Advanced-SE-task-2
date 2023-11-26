@@ -77,18 +77,6 @@ public class PictureFrame {
         void drawDigitGivenCentre(Graphics g, int x, int y, int diameter, int number) {
             int radius = diameter / 2;
             g.setColor(Color.BLACK);
-
-            FontMetrics fm = g.getFontMetrics();
-
-            String txt = Integer.toString(n);
-            g.drawString(txt, x - fm.stringWidth(txt) / 2, y + fm.getMaxAscent() / 2);
-        }
-
-        void drawDigitGivenCentre(Graphics g, int x, int y, int diameter, int number,
-                                  Color c) {
-            int radius = diameter / 2;
-            g.setColor(c);
-
             FontMetrics fm = g.getFontMetrics();
             String txt = Integer.toString(n);
             g.drawString(txt, x - fm.stringWidth(txt) / 2, y + fm.getMaxAscent() / 2);
@@ -105,6 +93,7 @@ public class PictureFrame {
             g.drawString(txt, x - fm.stringWidth(txt) / 2, y + fm.getMaxAscent() / 2);
         }
 
+        @Override
         protected void paintComponent(Graphics g) {
             g.setColor(Color.YELLOW);
             g.fillRect(0, 0, getWidth(), getHeight());
@@ -126,6 +115,7 @@ public class PictureFrame {
             }
         }
 
+        @Override
         public Dimension getPreferredSize() {
             // the application window always prefers to be 202x182
             return new Dimension(202, 182);
