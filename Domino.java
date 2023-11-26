@@ -1,5 +1,5 @@
 /**
- * The Domino class represents a domino tile with high and low values, along with
+ * The Domino class represents a domino tile with highValue and lowValue values, along with
  * coordinates for placement on a game board. It includes methods for placement,
  * inversion, comparison, and string representation.
  */
@@ -7,76 +7,67 @@
 package base;
 
 public class Domino implements Comparable<Domino> {
-    public int high;
-    public int low;
-    public int hx;
-    public int hy;
-    public int lx;
-    public int ly;
-    public boolean placed = false;
+    private int highValue;
+    private int lowValue;
+    private int horizontalPositionX;
+    private int horizontalPositionY;
+    private int verticalPositionX;
+    private int verticalPositionY;
+    private boolean isPlaced;
 
-    public Domino(int high, int low) {
-        super();
-        this.high = high;
-        this.low = low;
+    public Domino(int highValue, int lowValue) {
+        this.highValue = highValue;
+        this.lowValue = lowValue;
+        this.isPlaced = false;
     }
 
-    public void place(int hx, int hy, int lx, int ly) {
-        this.hx = hx;
-        this.hy = hy;
-        this.lx = lx;
-        this.ly = ly;
-        placed = true;
+    public void place(int horizontalPositionX, int horizontalPositionY, int verticalPositionX, int verticalPositionY) {
+        this.horizontalPositionX = horizontalPositionX;
+        this.horizontalPositionY = horizontalPositionY;
+        this.verticalPositionX = verticalPositionX;
+        this.verticalPositionY = verticalPositionY;
+        this.isPlaced = true;
     }
 
-    public String toString() {
-        StringBuffer result = new StringBuffer();
-        result.append("[");
-        result.append(Integer.toString(high));
-        result.append(Integer.toString(low));
-        result.append("]");
-        if (!placed) {
-            result.append("unplaced");
-        } else {
-            result.append("(");
-            result.append(Integer.toString(hx + 1));
-            result.append(",");
-            result.append(Integer.toString(hy + 1));
-            result.append(")");
-            result.append("(");
-            result.append(Integer.toString(lx + 1));
-            result.append(",");
-            result.append(Integer.toString(ly + 1));
-            result.append(")");
-        }
-        return result.toString();
+   
+    @Override
+public String toString() {
+    StringBuilder result = new StringBuilder();
+    result.append(String.format("[%d%d]", highValue, lowValue));
+
+    if (!isPlaced) {
+        result.append(" unplaced");
+    } else {
+        result.append(String.format("(%d,%d)", horizontalPositionX + 1, horizontalPositionY + 1));
+        result.append(String.format("(%d,%d)", verticalPositionX + 1, verticalPositionY + 1));
     }
+
+    return result.toString();
+}
+
 
     /**
-     * turn the domino around 180 degrees clockwise
+     * Turn the domino around 180 degrees clockwise.
      */
-
     public void invert() {
-        int tx = hx;
-        hx = lx;
-        lx = tx;
+        int tempX = horizontalPositionX; // rename tx to tempX
+        horizontalPositionX = verticalPositionX;
+        verticalPositionX = tempX;
 
-        int ty = hy;
-        hy = ly;
-        ly = ty;
+        int tempY = horizontalPositionY; // rename ty to tempy
+        horizontalPositionY = verticalPositionY;
+        verticalPositionY = tempY;
     }
 
-    public boolean ishl() {
-        return hy == ly;
+    public boolean isHorizontalPlacement() {
+        return horizontalPositionY == verticalPositionY;
     }
 
-
-    public int compareTo(Domino arg0) {
-        if (this.high < arg0.high) {
+    @Override
+    public int compareTo(Domino other) {
+        if (this.highValue < other.highValue) {
             return 1;
         }
-        return this.low - arg0.low;
+        return this.lowValue - other.lowValue;
     }
-
-
 }

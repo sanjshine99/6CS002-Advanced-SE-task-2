@@ -16,8 +16,8 @@ public class ConnectionGenius {
     }
 
     public void startGame() { // rename fireUpGame() to startGame()
-        downloadWebVersion(); // rename downloadWebVersion() to fetchSpecializedWebVersion()
-        connectToWebService(); // rename connectToWebService() to establishWebServiceConnection()
+        downloadWebVersion();
+        connectToWebService();
         launchGame(); // rename awayWeGo() to launchGame()
     }
 
