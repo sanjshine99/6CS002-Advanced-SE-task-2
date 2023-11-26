@@ -3,8 +3,8 @@ o
 java:S1104"RMake column a static final constant or non-public and provide accessors if needed.(‰¹´8Ç¹¾ÊÀ1
 l
 java:S1104"OMake row a static final constant or non-public and provide accessors if needed.(²¤÷”8Ô²ÍÊÀ1
-o
-java:S1104"MMake d a static final constant or non-public and provide accessors if needed.(Ø‹¨”úÿÿÿÿ8ÉĞ¶ÊÀ1
+r
+java:S1104"UMake direction a static final constant or non-public and provide accessors if needed.(À‘¿µ8ÓØåÒÀ1
 q
 java:S1104"OMake tmp a static final constant or non-public and provide accessors if needed.(Ÿ™ãúÿÿÿÿ8ÉĞ¶ÊÀ1
 É

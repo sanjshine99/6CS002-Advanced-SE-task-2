@@ -29,22 +29,20 @@ public class Domino implements Comparable<Domino> {
         this.isPlaced = true;
     }
 
-   
     @Override
-public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(String.format("[%d%d]", highValue, lowValue));
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        result.append(String.format("[%d%d]", highValue, lowValue));
 
-    if (!isPlaced) {
-        result.append(" unplaced");
-    } else {
-        result.append(String.format("(%d,%d)", horizontalPositionX + 1, horizontalPositionY + 1));
-        result.append(String.format("(%d,%d)", verticalPositionX + 1, verticalPositionY + 1));
+        if (!isPlaced) {
+            result.append(" unplaced");
+        } else {
+            result.append(String.format("(%d,%d)", horizontalPositionX + 1, horizontalPositionY + 1));
+            result.append(String.format("(%d,%d)", verticalPositionX + 1, verticalPositionY + 1));
+        }
+
+        return result.toString();
     }
-
-    return result.toString();
-}
-
 
     /**
      * Turn the domino around 180 degrees clockwise.
@@ -69,5 +67,8 @@ public String toString() {
             return 1;
         }
         return this.lowValue - other.lowValue;
+    }
+
+    public void setPosition(int gridX, int gridY, int i, int gridY2) {
     }
 }

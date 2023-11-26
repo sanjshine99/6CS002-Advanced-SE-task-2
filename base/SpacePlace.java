@@ -5,14 +5,14 @@
 package base;
 
 public class SpacePlace {
-    private int xOrg;
-    private int yOrg;
+    private int xOrgin;
+    private int yOrgin;
     private double theta;
     private double phi;
 
     public SpacePlace() {
-        xOrg = 0;
-        yOrg = 0;
+        xOrgin = 0;
+        yOrgin = 0;
     }
 
     public SpacePlace(double theta, double phi) {
@@ -21,20 +21,20 @@ public class SpacePlace {
         this.phi = phi;
     }
 
-    public int getxOrg() {
-        return xOrg;
+    public int getxOrgin() {
+        return xOrgin;
     }
 
-    public void setxOrg(int xOrg) {
-        this.xOrg = xOrg;
+    public void setxOrgin(int xOrgin) {
+        this.xOrgin = xOrgin;
     }
 
-    public int getyOrg() {
-        return yOrg;
+    public int getyOrgin() {
+        return yOrgin;
     }
 
-    public void setyOrg(int yOrg) {
-        this.yOrg = yOrg;
+    public void setyOrgin(int yOrgin) {
+        this.yOrgin = yOrgin;
     }
 
     public double getTheta() {
