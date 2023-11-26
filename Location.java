@@ -38,12 +38,11 @@ public class Location extends SpacePlace {
     }
 
 
-    public String toString() {
+    public String toString() {tmp = column + 1;
         if (direction == null) {
-            tmp = column + 1;
+
             return "(" + (tmp) + "," + (r + 1) + ")";
         } else {
-            tmp = column + 1;
             return "(" + (tmp) + "," + (r + 1) + "," + direction + ")";
         }
     }
