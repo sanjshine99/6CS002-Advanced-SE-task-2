@@ -7,32 +7,29 @@
  */
 package base;
 
-import java.awt.Dimension;
-import java.awt.Graphics;
+import javax.swing.*;
+import java.awt.*;
 import java.io.*;
 import java.net.InetAddress;
 import java.text.DateFormat;
+import java.util.List;
 import java.util.*;
-
-import javax.swing.JEditorPane;
-import javax.swing.JFrame;
-import javax.swing.JScrollPane;
 
 public class Main {
 
-    private String playerName;
-    public List<Domino> dominoList;
-    public List<Domino> guessList;
-    public int[][] grid = new int[7][8];
-    public int[][] gg = new int[7][8];
-    int mode = -1;
-    int cf;
-    int score;
-    long startTime;
+    private static String playerName;
+    public static List<Domino> dominoList;
+    public static List<Domino> guessList;
+    public static int[][] grid = new int[7][8];
+    public static int[][] gg = new int[7][8];
+    static int mode = -1;
+    static int cf;
+    static int score;
+    static long startTime;
 
-    PictureFrame pictureFrame = new PictureFrame();
+    static PictureFrame pictureFrame = new PictureFrame();
 
-    private void generateDominoes() {
+    public static void generateDominoes() {
         dominoList = new LinkedList<Domino>();
         int count = 0;
         int x = 0;
@@ -56,7 +53,7 @@ public class Main {
         }
     }
 
-    private void generateGuesses() {
+    static void generateGuesses() {
         guessList = new LinkedList<Domino>();
         int count = 0;
         int x = 0;
@@ -74,7 +71,7 @@ public class Main {
         }
     }
 
-    void collateGrid() {
+    public static Object collateGrid() {
         for (Domino d : dominoList) {
             if (!d.isPlaced) {
                 grid[d.horizontalPositionY][d.horizontalPositionX] = 9;
@@ -84,9 +81,10 @@ public class Main {
                 grid[d.verticalPositionY][d.verticalPositionX] = d.highValue;
             }
         }
+        return null;
     }
 
-    void collateGuessGrid() {
+    static Object collateGuessGrid() {
         for (int r = 0; r < 7; r++) {
             for (int c = 0; c < 8; c++) {
                 gg[r][c] = 9;
@@ -98,9 +96,10 @@ public class Main {
                 gg[d.verticalPositionY][d.verticalPositionX] = d.highValue;
             }
         }
+        return null;
     }
 
-    int printGuessGrid() {
+    static int printGuessGrid() {
         for (int are = 0; are < 7; are++) {
             for (int see = 0; see < 8; see++) {
                 if (gg[are][see] != 9) {
@@ -114,7 +113,7 @@ public class Main {
         return 11;
     }
 
-    private void shuffleDominoesOrder() {
+    private static void shuffleDominoesOrder() {
         List<Domino> shuffled = new LinkedList<Domino>();
 
         while (dominoList.size() > 0) {
@@ -126,7 +125,7 @@ public class Main {
         dominoList = shuffled;
     }
 
-    private void invertSomeDominoes() {
+    private static void invertSomeDominoes() {
         for (Domino d : dominoList) {
             if (Math.random() > 0.5) {
                 d.invert();
@@ -134,7 +133,7 @@ public class Main {
         }
     }
 
-    private void placeDominoes() {
+    private static void placeDominoes() {
         int x = 0;
         int y = 0;
         int count = 0;
@@ -153,7 +152,7 @@ public class Main {
         }
     }
 
-    private void rotateDominoes() {
+    private static void rotateDominoes() {
         for (int x = 0; x < 7; x++) {
             for (int y = 0; y < 6; y++) {
 
@@ -162,7 +161,7 @@ public class Main {
         }
     }
 
-    private void tryToRotateDominoAt(int x, int y) {
+    private static void tryToRotateDominoAt(int x, int y) {
         Domino d = findDominoAt(x, y);
 
         if (thisIsTopLeftOfDomino(x, y, d)) {
@@ -174,7 +173,7 @@ public class Main {
         }
     }
 
-    private void tryRotationForHorizontalDomino(int x, int y, Domino d) {
+    private static void tryRotationForHorizontalDomino(int x, int y, Domino d) {
         if (shouldRotate()) {
             if (theCellBelowIsTopLeftOfHorizontalDomino(x, y)) {
                 rotateHorizontalDomino(x, y, d);
@@ -182,7 +181,7 @@ public class Main {
         }
     }
 
-    private void tryRotationForVerticalDomino(int x, int y, Domino d) {
+    private static void tryRotationForVerticalDomino(int x, int y, Domino d) {
         if (shouldRotate()) {
             if (theCellToTheRightIsTopLeftOfVerticalDomino(x, y)) {
                 rotateVerticalDomino(x, y, d);
@@ -190,22 +189,22 @@ public class Main {
         }
     }
 
-    private boolean shouldRotate() {
+    private static boolean shouldRotate() {
         return Math.random() < 0.5;
     }
 
-    private void rotateHorizontalDomino(int x, int y, Domino d) {
+    private static void rotateHorizontalDomino(int x, int y, Domino d) {
         Domino e = findDominoAt(x, y + 1);
         swapDominoPositions(e, d, x, y, x + 1, y, x, y + 1, y, y);
     }
 
-    private void rotateVerticalDomino(int x, int y, Domino d) {
+    private static void rotateVerticalDomino(int x, int y, Domino d) {
         Domino e = findDominoAt(x + 1, y);
         swapDominoPositions(e, d, x, y, x, y + 1, x + 1, y, x + 1, y + 1);
     }
 
-    private void swapDominoPositions(Domino e, Domino d, int x1, int y1, int x2, int y2, int x3, int y3, int x4,
-            int y4) {
+    private static void swapDominoPositions(Domino e, Domino d, int x1, int y1, int x2, int y2, int x3, int y3, int x4,
+                                            int y4) {
         e.horizontalPositionX = x1;
         e.verticalPositionX = x2;
         d.horizontalPositionX = x3;
@@ -216,22 +215,22 @@ public class Main {
         d.horizontalPositionY = y4;
     }
 
-    private boolean theCellToTheRightIsTopLeftOfVerticalDomino(int x, int y) {
+    private static boolean theCellToTheRightIsTopLeftOfVerticalDomino(int x, int y) {
         Domino e = findDominoAt(x + 1, y);
         return thisIsTopLeftOfDomino(x + 1, y, e) && !e.isHorizontalPlacement();
     }
 
-    private boolean theCellBelowIsTopLeftOfHorizontalDomino(int x, int y) {
+    private static boolean theCellBelowIsTopLeftOfHorizontalDomino(int x, int y) {
         Domino e = findDominoAt(x, y + 1);
         return thisIsTopLeftOfDomino(x, y + 1, e) && e.isHorizontalPlacement();
     }
 
-    private boolean thisIsTopLeftOfDomino(int x, int y, Domino d) {
+    private static boolean thisIsTopLeftOfDomino(int x, int y, Domino d) {
         return (x == Math.min(d.verticalPositionX, d.horizontalPositionX))
                 && (y == Math.min(d.verticalPositionY, d.horizontalPositionY));
     }
 
-    private Domino findDominoAt(int x, int y) {
+    private static Domino findDominoAt(int x, int y) {
         for (Domino d : dominoList) {
             if ((d.verticalPositionX == x && d.verticalPositionY == y)
                     || (d.horizontalPositionX == x && d.horizontalPositionY == y)) {
@@ -241,7 +240,7 @@ public class Main {
         return null;
     }
 
-    private Domino findGuessAt(int x, int y) {
+    private static Domino findGuessAt(int x, int y) {
         for (Domino d : guessList) {
             if ((d.verticalPositionX == x && d.verticalPositionY == y)
                     || (d.horizontalPositionX == x && d.horizontalPositionY == y)) {
@@ -251,7 +250,7 @@ public class Main {
         return null;
     }
 
-    private Domino findGuessByLH(int x, int y) {
+    private static Domino findGuessByLH(int x, int y) {
         for (Domino d : guessList) {
             if ((d.highValue == x && d.highValue == y) || (d.highValue == x && d.highValue == y)) {
                 return d;
@@ -260,7 +259,7 @@ public class Main {
         return null;
     }
 
-    private Domino findDominoByLH(int x, int y) {
+    private static Domino findDominoByLH(int x, int y) {
         for (Domino d : dominoList) {
             if ((d.highValue == x && d.highValue == y) || (d.highValue == x && d.highValue == y)) {
                 return d;
@@ -269,19 +268,19 @@ public class Main {
         return null;
     }
 
-    private void printDominoes() {
+    private static void printDominoes() {
         for (Domino d : dominoList) {
             System.out.println(d);
         }
     }
 
-    private void printGuesses() {
+    private static void printGuesses() {
         for (Domino d : guessList) {
             System.out.println(d);
         }
     }
 
-    public final int ZERO = 0;
+    public static final int ZERO = 0;
 
     public void run() {
         IOSpecialist io = new IOSpecialist();
@@ -840,7 +839,7 @@ public class Main {
 
     }
 
-    private void recordTheScore() {
+    private static void recordTheScore() {
         try {
             PrintWriter pw = new PrintWriter(new FileWriter("score.txt", true));
             String n = playerName.replaceAll(",", "_");
@@ -860,9 +859,10 @@ public class Main {
         new Main().run();
     }
 
-    public void drawDominoes(Graphics g) {
+    public static void drawDominoes(Graphics g) {
         for (Domino d : dominoList) {
             pictureFrame.dp.drawDomino(g, d);
+
         }
     }
 
@@ -878,10 +878,20 @@ public class Main {
         }
     }
 
-    public void drawGuesses(Graphics g) {
+    public static void drawGuesses(Graphics g) {
         for (Domino d : guessList) {
             pictureFrame.dp.drawDomino(g, d);
         }
     }
+    public void setGrid(int[][] newGrid) {
+        this.grid = newGrid;
+    }
+
+    public List<Domino> getDominoList() {
+        return dominoList;
+    }
+
+
+
 
 }

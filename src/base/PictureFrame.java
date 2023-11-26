@@ -7,12 +7,10 @@
 
 package base;
 
+import javax.swing.*;
 import java.awt.*;
 
-import javax.swing.*;
-
 public class PictureFrame {
-    public int[] reroll = null;
     public Main master = null;
 
     class DominoPanel extends JPanel {
@@ -126,11 +124,6 @@ public class PictureFrame {
             frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
             frame.setVisible(true);
         }
-    }
-
-    public void reset() {
-        // TODO Auto-generated method stub
-
     }
 
 }

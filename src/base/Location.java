@@ -46,13 +46,13 @@ public class Location extends SpacePlace {
         drawVerticalLines(graphics);
     }
 
-    private void drawHorizontalLines(Graphics graphics) {
+    public void drawHorizontalLines(Graphics graphics) {
         for (int tmp = 0; tmp <= 7; tmp++) {
             graphics.drawLine(20, 20 + tmp * 20, 180, 20 + tmp * 20);
         }
     }
 
-    private void drawVerticalLines(Graphics graphics) {
+    public void drawVerticalLines(Graphics graphics) {
         for (int see = 0; see <= 8; see++) {
             graphics.drawLine(20 + see * 20, 20, 20 + see * 20, 160);
         }

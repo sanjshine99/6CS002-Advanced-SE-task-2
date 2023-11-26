@@ -9,12 +9,12 @@ package base;
 
 
 public class MultiLingualStringTable {
-    private static LanguageSetting currentLanguage = LanguageSetting.English;
+    private static LanguageSetting currentSelectedLanguage = LanguageSetting.English;
     private static String[] englishMessage = {"Enter your name:", "Welcome", "Have a good time playing Abominodo"};
     private static String[] klingonMessages = {"'el lIj pong:", "nuqneH", "QaQ poH Abominodo"};
 
     public static String getMessage(int index) {
-        if (currentLanguage == LanguageSetting.English) {
+        if (currentSelectedLanguage == LanguageSetting.English) {
             return englishMessage[index];
         } else {
             return klingonMessages[index];
@@ -22,5 +22,9 @@ public class MultiLingualStringTable {
 
     }
 
-    private enum LanguageSetting {English, Klingon}
+    public static void setCurrentLanguage(LanguageSetting language) {
+        currentSelectedLanguage = language;
+    }
+
+    enum LanguageSetting {English, Klingon}
 }
