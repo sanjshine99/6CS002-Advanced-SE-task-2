@@ -107,9 +107,9 @@ public class Main {
     }
 
     void collateGuessGrid() {
-        for (int r = 0; r < 7; r++) {
-            for (int c = 0; c < 8; c++) {
-                gg[r][c] = 9;
+        for (int row = 0; row < 7; row++) {
+            for (int column = 0; column < 8; column++) {
+                gg[row][column] = 9;
             }
         }
         for (Domino d : _g) {
@@ -691,8 +691,8 @@ public class Main {
                                     case 3: {
                                         score -= 2000;
                                         HashMap<Domino, List<Location>> map = new HashMap<Domino, List<Location>>();
-                                        for (int r = 0; r < 6; r++) {
-                                            for (int c = 0; c < 7; c++) {
+                                        for (int row = 0; row < 6; row++) {
+                                            for (int column = 0; column < 7; column++) {
                                                 Domino hd = findGuessByLH(grid[r][c], grid[r][c + 1]);
                                                 Domino vd = findGuessByLH(grid[r][c], grid[r + 1][c]);
                                                 List<Location> l = map.get(hd);
@@ -723,10 +723,10 @@ public class Main {
                                     case 4: {
                                         score -= 10000;
                                         HashMap<Domino, List<Location>> map = new HashMap<Domino, List<Location>>();
-                                        for (int r = 0; r < 6; r++) {
-                                            for (int c = 0; c < 7; c++) {
-                                                Domino hd = findGuessByLH(grid[r][c], grid[r][c + 1]);
-                                                Domino vd = findGuessByLH(grid[r][c], grid[r + 1][c]);
+                                        for (int row = 0; row < 6; row++) {
+                                            for (int column = 0; column < 7; column++) {
+                                                Domino hd = findGuessByLH(grid[r][column], grid[r][column + 1]);
+                                                Domino vd = findGuessByLH(grid[r][column], grid[r + 1][column]);
                                                 List<Location> l = map.get(hd);
                                                 if (l == null) {
                                                     l = new LinkedList<Location>();

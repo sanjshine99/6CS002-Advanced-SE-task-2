@@ -12,40 +12,39 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 public class Location extends SpacePlace {
-    public int c;
-    public int r;
+    public int column;
+    public int row;
     public DIRECTION d;
     public int tmp;
 
-    public Location(int r, int c) {
-        this.r = r;
-        this.c = c;
+    public Location(int row, int column) {
+        this.row = row;
+        this.column = column;
     }
 
-    ;
-
-    public Location(int r, int c, DIRECTION d) {
-        this(r, c);
-        this.d = d;
+    public Location(int row, int column, DIRECTION direction) {
+        this(row, column);
+        this.direction = direction;
     }
 
     public static int getInt() {
-        BufferedReader r = new BufferedReader(new InputStreamReader(System.in));
+        private static final BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         do {
             try {
-                return Integer.parseInt(r.readLine());
+                return Integer.parseInt(reader.readLine());
             } catch (Exception e) {
             }
         } while (true);
     }
 
+
     public String toString() {
-        if (d == null) {
-            tmp = c + 1;
+        if (direction == null) {
+            tmp = column + 1;
             return "(" + (tmp) + "," + (r + 1) + ")";
         } else {
-            tmp = c + 1;
-            return "(" + (tmp) + "," + (r + 1) + "," + d + ")";
+            tmp = column + 1;
+            return "(" + (tmp) + "," + (r + 1) + "," + direction + ")";
         }
     }
 
