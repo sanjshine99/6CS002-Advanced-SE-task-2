@@ -1,5 +1,5 @@
 /*
- * _Q Class
+ * QuoteContainer Class
  *
  * This class serves as a container for a collection of quotes. The quotes are stored
  * in a static array, providing a convenient way to access and reference them.
@@ -9,7 +9,7 @@
 package base;
 
 public class QuoteContainer {
-    static transient String[] quoteArray = {
+    static String[] quoteArray = {
             "Progress comes from the intelligent use of experience.", "Elbert Hubbard", "",
             "No amount of experimentation can ever prove me right; a single experiment can prove me wrong.",
             "Albert Einstein", "",

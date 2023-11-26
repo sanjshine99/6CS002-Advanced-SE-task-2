@@ -164,40 +164,56 @@ public class Main {
 
     private void tryToRotateDominoAt(int x, int y) {
         Domino d = findDominoAt(x, y);
+
         if (thisIsTopLeftOfDomino(x, y, d)) {
             if (d.isHorizontalPlacement()) {
-                boolean weFancyARotation = Math.random() < 0.5;
-                if (weFancyARotation) {
-                    if (theCellBelowIsTopLeftOfHorizontalDomino(x, y)) {
-                        Domino e = findDominoAt(x, y + 1);
-                        e.horizontalPositionX = x;
-                        e.verticalPositionX = x;
-                        d.horizontalPositionX = x + 1;
-                        d.verticalPositionX = x + 1;
-                        e.verticalPositionY = y + 1;
-                        e.horizontalPositionY = y;
-                        d.verticalPositionY = y + 1;
-                        d.horizontalPositionY = y;
-                    }
-                }
+                tryRotationForHorizontalDomino(x, y, d);
             } else {
-                boolean weFancyARotation = Math.random() < 0.5;
-                if (weFancyARotation) {
-                    if (theCellToTheRightIsTopLeftOfVerticalDomino(x, y)) {
-                        Domino e = findDominoAt(x + 1, y);
-                        e.horizontalPositionX = x;
-                        e.verticalPositionX = x + 1;
-                        d.horizontalPositionX = x;
-                        d.verticalPositionX = x + 1;
-                        e.verticalPositionY = y + 1;
-                        e.horizontalPositionY = y + 1;
-                        d.verticalPositionY = y;
-                        d.horizontalPositionY = y;
-                    }
-                }
-
+                tryRotationForVerticalDomino(x, y, d);
             }
         }
+    }
+
+    private void tryRotationForHorizontalDomino(int x, int y, Domino d) {
+        if (shouldRotate()) {
+            if (theCellBelowIsTopLeftOfHorizontalDomino(x, y)) {
+                rotateHorizontalDomino(x, y, d);
+            }
+        }
+    }
+
+    private void tryRotationForVerticalDomino(int x, int y, Domino d) {
+        if (shouldRotate()) {
+            if (theCellToTheRightIsTopLeftOfVerticalDomino(x, y)) {
+                rotateVerticalDomino(x, y, d);
+            }
+        }
+    }
+
+    private boolean shouldRotate() {
+        return Math.random() < 0.5;
+    }
+
+    private void rotateHorizontalDomino(int x, int y, Domino d) {
+        Domino e = findDominoAt(x, y + 1);
+        swapDominoPositions(e, d, x, y, x + 1, y, x, y + 1, y, y);
+    }
+
+    private void rotateVerticalDomino(int x, int y, Domino d) {
+        Domino e = findDominoAt(x + 1, y);
+        swapDominoPositions(e, d, x, y, x, y + 1, x + 1, y, x + 1, y + 1);
+    }
+
+    private void swapDominoPositions(Domino e, Domino d, int x1, int y1, int x2, int y2, int x3, int y3, int x4,
+            int y4) {
+        e.horizontalPositionX = x1;
+        e.verticalPositionX = x2;
+        d.horizontalPositionX = x3;
+        d.verticalPositionX = x4;
+        e.verticalPositionY = y1 + 1;
+        e.horizontalPositionY = y2 + 1;
+        d.verticalPositionY = y3;
+        d.horizontalPositionY = y4;
     }
 
     private boolean theCellToTheRightIsTopLeftOfVerticalDomino(int x, int y) {
