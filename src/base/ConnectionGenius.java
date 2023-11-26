@@ -21,9 +21,10 @@ public class ConnectionGenius {
         launchGame(); // rename awayWeGo() to launchGame()
     }
 
-    public void downloadWebVersion() {
+    public short downloadWebVersion() {
         System.out.println("Getting specialised web version.");
         System.out.println("Wait a couple of moments");
+        return 0;
     }
 
     public void connectToWebService() {

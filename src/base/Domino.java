@@ -69,6 +69,35 @@ public class Domino implements Comparable<Domino> {
         return this.lowValue - other.lowValue;
     }
 
-    public void setPosition(int gridX, int gridY, int i, int gridY2) {
+
+    public int getHighValue() {
+        return highValue;
+    }
+
+    public int getLowValue() {
+        return lowValue;
+    }
+
+    public boolean isPlaced() {
+        return isPlaced;
+    }
+    public void setPlaced(boolean placed) {
+        this.isPlaced = placed;
+    }
+
+    public int getHorizontalPositionX() {
+        return  horizontalPositionX;
+    }
+
+    public int getHorizontalPositionY() {
+        return  horizontalPositionY;
+    }
+
+    public int getVerticalPositionX() {
+        return verticalPositionX;
+    }
+
+    public int getVerticalPositionY() {
+        return verticalPositionY;
     }
 }
